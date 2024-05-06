@@ -1,0 +1,75 @@
+def form(request):
+    return render(request, 'progetto_macchine/form.html')
+
+
+# views.py
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+from django.contrib.auth.forms import AuthenticationForm
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('form')  # Reindirizza alla pagina di successo dopo il login
+        else:
+            error_message = "Credenziali non valide. Riprova."
+            return render(request, 'progetto_macchine/prive.html', {'error_message': error_message, 'form': form})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'progetto_macchine/prive.html', {'form': form})
+
+class MachineUpdateView(UpdateView):
+    model = Machine
+    fields = ['name', 'manufacturer', 'year_manufactured', 'serial_number', 'machine_type']
+    template_name = 'progetto_macchine/modifica_elemento.html'  # Correzione del percorso del template
+
+    # Funzione per ottenere l'URL di reindirizzamento dopo l'aggiornamento
+    def get_success_url(self):
+        return reverse_lazy('progetto_macchine-pagina')
+
+# Create View
+class MachineCreateView(CreateView):
+    model = Machine
+    fields = ['name', 'manufacturer', 'year_manufactured', 'serial_number', 'machine_type']
+    template_name = 'progetto_macchine/aggiungi_elemento.html'  # Correzione del percorso del template
+    success_url=reverse_lazy('pagina')
+# Delete View
+class MachineDeleteView(DeleteView):
+    model = Machine
+    template_name = 'progetto_macchine/elimina_elemento.html'  # Correzione del percorso del template
+
+
+
+
+
+
+
+
+    
+    from django.urls import path
+    from . import views
+    from django.contrib.auth import views as auth_views
+    from django.conf import settings
+    from django.conf.urls.static import static
+    from .views import MachineCreateView, MachineUpdateView, MachineDeleteView
+    urlpatterns = [
+        path('', views.home, name="progetto_macchine-home"),
+        path('pagina/', views.MachineListView.as_view(), name="progetto_macchine-pagina"),
+        path('pagina/<int:pk>/', views.MachineDetailView.as_view(), name="progetto_macchine-detailpagina"),
+        path('prive/', views.prive,  name='progetto_macchine-prive'),  
+        path('search/', views.search, name='search_results'),
+        path('form/', views.form, name='form'),  
+    
+        path('aggiungi_elemento/', MachineCreateView.as_view(), name='aggiungi_elemento'),
+        path('modifica_elemento/<int:pk>/', MachineUpdateView.as_view(), name='modifica_elemento'),
+        path('elimina_elemento/<int:pk>/', MachineDeleteView.as_view(), name='elimina_elemento'),
+    ]
+    
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

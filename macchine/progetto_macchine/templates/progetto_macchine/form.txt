@@ -1,0 +1,39 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block title %}
+  Gestione Macchine
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Gestione delle Macchine</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <a href="{% url 'aggiungi_elemento' %}" class="btn btn-primary btn-lg btn-block mb-3">Aggiungi Nuova Macchina</a>
+    </div>
+    <div class="col-md-4">
+      <a href="{% url 'elimina_elemento' pk=1 %}" class="btn btn-danger btn-lg btn-block mb-3">Elimina Macchina</a>
+    </div>
+    <div class="col-md-4">
+      <a href="{% url 'modifica_elemento' pk=1 %}" class="btn btn-warning btn-lg btn-block mb-3">Modifica Macchina</a>
+    </div>
+  </div>
+  <div class="row mt-4">
+    {% for machine in machines %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <img src="{{ machine.images.first.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ machine.name }}</h5>
+          <p class="card-text">Manufacturer: {{ machine.manufacturer }}</p>
+          <p class="card-text">Year Manufactured: {{ machine.year_manufactured }}</p>
+          <a href="{% url 'modifica_elemento' pk=machine.pk %}" class="btn btn-warning btn-block">Modifica</a>
+          <a href="{% url 'elimina_elemento' pk=machine.pk %}" class="btn btn-danger btn-block mt-2">Elimina</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+

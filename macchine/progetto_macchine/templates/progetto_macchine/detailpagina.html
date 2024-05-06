@@ -1,0 +1,76 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-12 text-center">
+      <h1 class="display-4">{{ machine.name }}</h1>
+      
+    </div>
+    <div class="col-lg-6">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
+          <div class="carousel-inner">
+              {% for image in machine.images.all %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img src="{{ image.image.url }}" class="d-block w-100 h-100" alt="{{ machine.name }}">
+              </div>
+              {% endfor %}
+          </div>
+      
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card border border-dark rounded-3 shadow-lg hover-effect">
+        <div class="card-body">
+          <h2 class="card-title">{{ machine.name }}</h2>
+          <p class="card-text"><i class="fas fa-calendar-alt mr-2"></i>Année de Fabrication: {{ machine.year_manufactured }}</p>
+          <p class="card-text"><i class="fas fa-tag mr-2"></i>Fabricant: {{ machine.manufacturer }}</p>
+          <p class="card-text"><i class="fas fa-barcode mr-2"></i>Numéro de Série: {{ machine.serial_number }}</p>
+          <p class="card-text"><i class="fas fa-cogs mr-2"></i>Type: {{ machine.machine_type }}</p>
+          <a href="{% url 'progetto_macchine-pagina' %}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: auto;
+  object-fit: cover;
+}
+
+.btn-secondary {
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.hover-effect {
+  cursor: pointer;
+}
+
+
+</style>
+{% endblock content %}

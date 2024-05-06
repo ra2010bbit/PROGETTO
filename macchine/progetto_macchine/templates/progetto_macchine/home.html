@@ -1,0 +1,48 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container-fluid py-5" style="background-color: #f8f9fa;">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-3 mb-4" style="color: #343a40;">Bienvenue dans notre vitrine de voitures!</h1>
+      <p class="lead mb-4" style="color: #6c757d;">Découvrez notre large sélection de voitures de haute qualité disponibles à la vente. Nous proposons des voitures pour diverses applications industrielles, de la construction aux technologies de pointe.</p>
+      <p class="mb-4" style="color: #6c757d;">Nos voitures sont soigneusement sélectionnées par nos experts pour leur qualité, leur performance et leur fiabilité. Nous nous engageons à fournir à nos clients les meilleurs produits et services.</p>
+      <a href="{% url 'progetto_macchine-pagina' %}" class="btn btn-primary btn-lg">Découvrir les machines</a>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'images/macchina.jpg' %}" alt="Voitures à vendre" class="img-fluid rounded">
+    </div>
+  </div>
+</div>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="display-4 mb-4" style="color: #343a40;">Pourquoi choisir nos voitures ?</h2>
+      <ul class="list-unstyled">
+        <li class="mb-3">
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span style="color: #343a40;">Qualité supérieure: Nous offrons uniquement des voitures de marques réputées, reconnues pour leur qualité et leur performance.</span>
+        </li>
+        <li class="mb-3">
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span style="color: #343a40;">Large sélection: Notre catalogue comprend une large gamme de voitures pour répondre à tous les besoins industriels.</span>
+        </li>
+        <li class="mb-3">
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span style="color: #343a40;">Service client exceptionnel: Notre équipe dévouée est toujours prête à vous aider et à répondre à toutes vos questions.</span>
+        </li>
+        <li class="mb-3">
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span style="color: #343a40;">Fiabilité: Nos voitures sont conçues pour offrir une performance optimale et une durabilité exceptionnelle.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h2 class="display-4 mb-4" style="color: #343a40;">Besoin d'aide ? Contactez-nous !</h2>
+      <p class="mb-4" style="color: #6c757d;">Si vous avez des questions sur nos produits ou si vous avez besoin d'assistance, n'hésitez pas à nous contacter. Notre équipe est là pour vous aider.</p>
+      <p class="mb-4" style="color: #6c757d;">Appelez-nous au +226 70 70 40 45 ,+266 76 76 40 45 <strong> </strong> ou envoyez-nous un e-mail à <strong>info@vitrinedemachines.com</strong>. Nous serons ravis de vous aider.</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

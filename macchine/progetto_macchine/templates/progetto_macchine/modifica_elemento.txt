@@ -1,0 +1,16 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block title %}
+  Modifica Elemento
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>Modifica Macchina</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+    </form>
+  </div>
+{% endblock %}

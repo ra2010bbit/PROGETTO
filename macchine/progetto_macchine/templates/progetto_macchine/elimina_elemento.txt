@@ -1,0 +1,16 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block title %}
+  Elimina Elemento
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>Elimina Macchina</h1>
+    <p>Sei sicuro di voler eliminare questa macchina?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Conferma Eliminazione</button>
+    </form>
+  </div>
+{% endblock %}

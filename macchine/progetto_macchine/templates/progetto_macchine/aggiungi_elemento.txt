@@ -1,0 +1,47 @@
+{% extends "progetto_macchine/base.html" %}
+
+{% block title %}
+  Aggiungi Elemento
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>Aggiungi Nuova Macchina</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ image_formset.management_form }}
+    <div class="mb-3">
+      <label for="id_image">Aggiungi Immagini</label>
+      <div id="image-formset">
+        {{ image_formset.management_form }}
+        {% for form in image_formset %}
+          {{ form.as_p }}
+          <input type="file" name="image_{{ forloop.counter }}" accept="image/*" multiple>
+        {% endfor %}
+      </div>
+      <button type="button" id="add-image" class="btn btn-success">Aggiungi Immagine</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Salva</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let formset = document.getElementById('image-formset');
+    let addButton = document.getElementById('add-image');
+    
+    addButton.addEventListener('click', function() {
+      let newForm = formset.firstElementChild.cloneNode(true);
+      let totalForms = document.getElementById('id_form-TOTAL_FORMS');
+      let formCount = parseInt(totalForms.value);
+      
+      newForm.innerHTML = newForm.innerHTML.replace(/form-(\d+)/g, `form-${formCount}`);
+      formCount++;
+      totalForms.value = formCount;
+      
+      formset.appendChild(newForm);
+    });
+  });
+</script>
+{% endblock %}
