@@ -1,17 +1,37 @@
 {% extends "progetto_macchine/base.html" %}
-
 {% block content %}
 {% load static %}
 <div class="container-fluid py-5" style="background-color: #f8f9fa;">
-  <div class="row">
-    <div class="col-md-6">
-      <h1 class="display-3 mb-4" style="color: #343a40;">Bienvenue dans notre vitrine de voitures!</h1>
-      <p class="lead mb-4" style="color: #6c757d;">Découvrez notre large sélection de voitures de haute qualité disponibles à la vente. Nous proposons des voitures pour diverses applications industrielles, de la construction aux technologies de pointe.</p>
-      <p class="mb-4" style="color: #6c757d;">Nos voitures sont soigneusement sélectionnées par nos experts pour leur qualité, leur performance et leur fiabilité. Nous nous engageons à fournir à nos clients les meilleurs produits et services.</p>
-      <a href="{% url 'progetto_macchine-pagina' %}" class="btn btn-primary btn-lg">Découvrir les machines</a>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div style="background-color: #f8f9fa; padding: 20px;">
+                <h2 style="color: #343a40;">Bienvenue dans notre vitrine de voitures!</h2>
+                <h4 style="color: #343a40;">G.E.C.A.F</h4>
+                <h5 style="color: #343a40;">General Entreprise Compaorè Adama & Frères</h5>
+                <h5 style="color: #343a40;">Commerce Gènèral-Import-Export</h5>
+                <h5 style="color: #343a40;">Adàma Compaore (Responsable)</h5>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6">
-      <img src="{% static 'images/macchina.jpg' %}" alt="Voitures à vendre" class="img-fluid rounded">
+</div>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <p class="lead mb-4" style="color: #6c757d;">Découvrez notre large sélection de voitures de haute qualité disponibles à la vente. Nous proposons des voitures pour diverses applications industrielles, de la construction aux technologies de pointe.</p>
+        <ul class="list-unstyled">
+          <li><p class="lead mb-4" style="color: #6c757d;">Vente du matériel électroménager.</p></li>
+          <li><p class="lead mb-4" style="color: #6c757d;">Consommables informatiques.</p></li>
+          <li><p class="lead mb-4" style="color: #6c757d;">Bâtiment Travaux Public.</p></li>
+          <li><p class="lead mb-4" style="color: #6c757d;">Fourniture de bureau.</p></li>
+          <li><p class="lead mb-4" style="color: #6c757d;">Produits agricoles.</p></li>
+          <li><p class="lead mb-4" style="color: #6c757d;">Forages.</p></li>
+        </ul>
+        <a href="{% url 'progetto_macchine-pagina' %}" class="btn btn-primary btn-lg">Découvrir les Voitures</a>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'images/macchina.jpg' %}" alt="Voitures à vendre" class="img-fluid rounded">
+        <p class="lead mt-3" style="color: #6c757d;">Nos voitures sont soigneusement sélectionnées par nos experts pour leur qualité, leur performance et leur fiabilité. Nous nous engageons à fournir à nos clients les meilleurs produits et services.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -21,27 +41,31 @@
       <h2 class="display-4 mb-4" style="color: #343a40;">Pourquoi choisir nos voitures ?</h2>
       <ul class="list-unstyled">
         <li class="mb-3">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          <span style="color: #343a40;">Qualité supérieure: Nous offrons uniquement des voitures de marques réputées, reconnues pour leur qualité et leur performance.</span>
+          <i class="fa fa-check-circle text-success me-2"></i>
+          <span>Qualité supérieure: Nous offrons uniquement des voitures de marques réputées, reconnues pour leur qualité et leur performance.</span>
         </li>
         <li class="mb-3">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          <span style="color: #343a40;">Large sélection: Notre catalogue comprend une large gamme de voitures pour répondre à tous les besoins industriels.</span>
+          <i class="fa fa-check-circle text-success me-2"></i>
+          <span>Large sélection: Notre catalogue comprend une large gamme de voitures pour répondre à tous les besoins industriels.</span>
         </li>
         <li class="mb-3">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          <span style="color: #343a40;">Service client exceptionnel: Notre équipe dévouée est toujours prête à vous aider et à répondre à toutes vos questions.</span>
+          <i class="fa fa-check-circle text-success me-2"></i>
+          <span>Service client exceptionnel: Notre équipe dévouée est toujours prête à vous aider et à répondre à toutes vos questions.</span>
         </li>
         <li class="mb-3">
-          <i class="bi bi-check-circle-fill text-success me-2"></i>
-          <span style="color: #343a40;">Fiabilité: Nos voitures sont conçues pour offrir une performance optimale et une durabilité exceptionnelle.</span>
+          <i class="fa fa-check-circle text-success me-2"></i>
+          <span>Fiabilité: Nos voitures sont conçues pour offrir une performance optimale et une durabilité exceptionnelle.</span>
         </li>
       </ul>
     </div>
     <div class="col-md-6">
       <h2 class="display-4 mb-4" style="color: #343a40;">Besoin d'aide ? Contactez-nous !</h2>
       <p class="mb-4" style="color: #6c757d;">Si vous avez des questions sur nos produits ou si vous avez besoin d'assistance, n'hésitez pas à nous contacter. Notre équipe est là pour vous aider.</p>
-      <p class="mb-4" style="color: #6c757d;">Appelez-nous au +226 70 70 40 45 ,+266 76 76 40 45 <strong> </strong> ou envoyez-nous un e-mail à <strong>info@vitrinedemachines.com</strong>. Nous serons ravis de vous aider.</p>
+      <p class="mb-4" style="color: #6c757d;">Appelez-nous au (+226) 70 70 40 45 (OUAGADOUGOU)</p>
+      <p class="mb-4" style="color: #6c757d;">(+266)76 76 40 45 et 79 79 40 45 (OUAGADOUGOU)</p>
+      <p class="mb-4" style="color: #6c757d;">(+228) 90 47 00 51 (LOME')</p>
+      <p class="mb-4" style="color: #6c757d;">(+229) 96  33 69 85 (COTONOU)</p>
+      <p class="mb-4" style="color: #6c757d;">Ou envoyez-nous un message Facebook à <strong>@gecaf</strong>. Nous serons ravis de vous aider.</p>
     </div>
   </div>
 </div>

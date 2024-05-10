@@ -12,8 +12,8 @@ class Machine(models.Model):
         return self.name
 
 class MachineImage(models.Model):
-    machine = models.ForeignKey(Machine, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='machine_photos')
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return f"Image of {self.machine.name}"

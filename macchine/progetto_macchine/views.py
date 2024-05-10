@@ -5,31 +5,37 @@ from django.contrib.auth import authenticate, login
 from .models import Machine
 from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
+from django.views.generic import DetailView
+from .models import Machine
 
 def home(request):
     return render(request, 'progetto_macchine/home.html')
-
-
-from django.views.generic import ListView
-from django.core.paginator import Paginator
-
 class MachineListView(ListView):
     model = Machine
     template_name = 'progetto_macchine/pagina.html'
-    context_object_name = 'progetto_macchina'
-    paginate_by = 10  # Numero di macchine per pagina
+    context_object_name = 'machine_list'
+    paginate_by = 10
 
     def get_queryset(self):
-        queryset = super().get_queryset().order_by('id')  # Ordina per ID o un altro campo appropriato
+        queryset = super().get_queryset().order_by('id')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        machines_list = context['progetto_macchina']
-        paginator = Paginator(machines_list, self.paginate_by)
-        page_number = self.request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        context['page_obj'] = page_obj
+        machines_list = context['machine_list']
+        images_list = []
+
+        for machine in machines_list:
+            # Ottieni le immagini associate a ciascuna macchina
+            images = machine.machineimage_set.all()
+            if images:
+                # Se ci sono immagini, aggiungi la prima immagine alla lista
+                images_list.append(images.first())
+            else:
+                # Altrimenti, aggiungi None alla lista
+                images_list.append(None)
+
+        context['images'] = images_list
         return context
 
 
@@ -51,8 +57,7 @@ def search(request):
     return render(request, 'progetto_macchine/search_results.html', {'machines': machines, 'query': query})
 
 
-from django.views.generic import DetailView
-from .models import Machine
+
 
 class MachineDetailView(DetailView):
     model = Machine
